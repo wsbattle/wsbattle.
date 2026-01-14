@@ -1,332 +1,282 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <title>Hello, Free fire player!</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-      <h1 class="title">Hello World!</h1>
-      <p id="currentTime"></p>
-      <script src="script.js"></script>
-  </body>
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+        <title>wsbattle</title>
+    </head> 
+    <body> 
+        <h1>wsbattle</h1>
+        <div>
+            Hello free fire player ! 
+        </div>  
+    </body>
 </html><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WS Battle - Free Fire Tournament FAQ</title>
+    <title>WS BATTLE - Pakistan's Best Tournament App</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
-
-        :root {
-            --ws-primary: #ffcc00;
-            --ws-secondary: #ff3c00;
-            --ws-dark: #05070a;
-            --ws-card: #0f141d;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: var(--ws-dark);
-            color: #e2e8f0;
-            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a;
+            color: white;
+            scroll-behavior: smooth;
         }
 
-        .orbitron { font-family: 'Orbitron', sans-serif; }
-
-        /* --- ANIMATIONS --- */
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(255, 204, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
         }
 
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+        /* Glowing Button Styles */
+        .glow-blue {
+            background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+            transition: all 0.3s ease;
+        }
+        .glow-blue:hover {
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.8);
+            transform: translateY(-2px);
         }
 
-        .animate-pulse-glow {
-            animation: pulse-glow 2s infinite;
+        .glow-green {
+            background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%);
+            box-shadow: 0 0 15px rgba(22, 163, 74, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-green:hover {
+            box-shadow: 0 0 25px rgba(22, 163, 74, 0.7);
+            transform: translateY(-2px);
         }
 
-        .shimmer-btn {
-            background: linear-gradient(90deg, #ffcc00 0%, #fff 50%, #ffcc00 100%);
-            background-size: 200% auto;
-            color: black;
-            animation: shimmer 3s infinite linear;
-            transition: transform 0.2s ease;
+        .glow-red {
+            background: linear-gradient(90deg, #dc2626 0%, #ef4444 100%);
+            box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
+            transition: all 0.3s ease;
+        }
+        .glow-red:hover {
+            box-shadow: 0 0 25px rgba(220, 38, 38, 0.7);
+            transform: translateY(-2px);
         }
 
-        .shimmer-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s forwards ease-out;
-        }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- UI STYLES --- */
-        .ws-gradient-text {
-            background: linear-gradient(135deg, #ffcc00, #ff7b00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .ws-card {
-            background: var(--ws-card);
-            border: 1px solid rgba(255, 204, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .ws-card:hover {
-            border-color: var(--ws-primary);
-            box-shadow: 0 10px 30px -10px rgba(255, 204, 0, 0.2);
-            transform: scale(1.01);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-
-        .faq-item.active .chevron {
-            transform: rotate(180deg);
-            color: var(--ws-primary);
-        }
-
-        .tab-btn {
-            position: relative;
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--ws-primary);
-            box-shadow: 0 0 10px var(--ws-primary);
+        .card:hover {
+            border-color: #3b82f6;
+            background: rgba(30, 41, 59, 0.8);
         }
 
-        .bg-glow {
+        .downloading-pulse {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        #install-modal {
+            display: none;
             position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at 50% -20%, rgba(255, 204, 0, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
     </style>
 </head>
 <body class="antialiased">
-    <div class="bg-glow"></div>
 
-    <!-- Navigation -->
-    <nav class="p-6 flex justify-between items-center max-w-7xl mx-auto">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 py-4 px-4 md:px-12 flex justify-between items-center border-b border-white/10 bg-slate-900/80 backdrop-blur-md">
         <div class="flex items-center space-x-2">
-            <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-lg flex items-center justify-center rotate-45">
-                <i class="fas fa-fire-alt text-black -rotate-45 text-xl"></i>
-            </div>
-            <span class="orbitron text-2xl font-black tracking-tighter">WS <span class="text-yellow-500 text-glow">BATTLE</span></span>
+            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-500/20">WS</div>
+            <span class="text-2xl font-bold tracking-tight">BATTLE</span>
         </div>
-        
-        <div class="flex items-center space-x-6">
-            <div class="hidden md:flex space-x-4">
-                <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" target="_blank" class="text-gray-400 hover:text-green-500 transition-colors"><i class="fab fa-whatsapp text-xl"></i></a>
-                <a href="https://youtube.com/@saimff92" target="_blank" class="text-gray-400 hover:text-red-500 transition-colors"><i class="fab fa-youtube text-xl"></i></a>
-            </div>
-            <!-- Animated Action Button -->
-            <button class="shimmer-btn orbitron text-[10px] font-black px-6 py-2 rounded-full tracking-[0.2em] animate-pulse-glow">
-                PLAY NOW
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="py-16 px-6 text-center fade-in-up" style="animation-delay: 0.1s;">
-        <h1 class="orbitron text-5xl md:text-7xl font-black mb-4 ws-gradient-text uppercase tracking-tighter">Support Hub</h1>
-        <p class="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl">
-            Join the elite squad on <span class="text-white font-bold">WS Battle</span>. Find answers or connect with our community channels below.
-        </p>
+        <nav class="hidden lg:flex space-x-8 text-sm font-medium text-gray-400">
+            <a href="#" class="hover:text-white transition">Home</a>
+            <a href="#how-to-install" class="hover:text-white transition">Install Guide</a>
+            <a href="#contact" class="hover:text-white transition">Support</a>
+            <a href="https://youtube.com/@saimff92?si=QcbhPvd9G35IYu5K" target="_blank" class="hover:text-red-500 transition"><i class="fa-brands fa-youtube mr-1"></i> YouTube</a>
+            <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" target="_blank" class="text-green-400 hover:text-green-300 transition">Contact Us</a>
+        </nav>
+        <button onclick="triggerDownload()" class="hidden sm:block text-xs bg-blue-600/20 text-blue-400 border border-blue-500/30 hover:bg-blue-600/30 px-4 py-2 rounded-full transition font-semibold">
+            GET APK
+        </button>
     </header>
 
-    <!-- Social Links Grid -->
-    <div class="max-w-4xl mx-auto px-6 mb-16 grid grid-cols-1 md:grid-cols-2 gap-4 fade-in-up" style="animation-delay: 0.2s;">
-        <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" target="_blank" class="ws-card p-6 rounded-2xl flex items-center space-x-4 group">
-            <div class="bg-green-500/20 p-4 rounded-xl text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
-                <i class="fab fa-whatsapp text-2xl"></i>
+    <!-- Hero Section -->
+    <section class="hero-gradient py-12 px-4 md:py-24 border-b border-white/5 text-center">
+        <div class="max-w-6xl mx-auto flex flex-col items-center">
+            <div class="relative inline-block mb-8">
+                <img src="https://res.cloudinary.com/dhhbpczhn/image/upload/v1768025374/IMG-20260104-WA0057_uen8op.jpg" 
+                     alt="WS BATTLE App" 
+                     class="w-32 h-32 rounded-3xl shadow-2xl border-4 border-blue-500/30 object-cover"
+                     onerror="this.src='https://via.placeholder.com/128?text=WS+BATTLE'">
+                <div class="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-slate-900 animate-pulse"></div>
             </div>
-            <div>
-                <h3 class="orbitron text-sm font-bold text-white tracking-widest">WHATSAPP CHANNEL</h3>
-                <p class="text-xs text-gray-500">Get Room IDs & Instant Alerts</p>
-            </div>
-        </a>
-        <a href="https://youtube.com/@saimff92" target="_blank" class="ws-card p-6 rounded-2xl flex items-center space-x-4 group">
-            <div class="bg-red-500/20 p-4 rounded-xl text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all duration-300">
-                <i class="fab fa-youtube text-2xl"></i>
-            </div>
-            <div>
-                <h3 class="orbitron text-sm font-bold text-white tracking-widest">YOUTUBE UPDATES</h3>
-                <p class="text-xs text-gray-500">Tournament Highlights & Live</p>
-            </div>
-        </a>
-    </div>
-
-    <!-- Search Section -->
-    <div class="max-w-3xl mx-auto px-6 mb-12 fade-in-up" style="animation-delay: 0.3s;">
-        <div class="relative group">
-            <input type="text" id="searchInput" placeholder="Search for help..." 
-                   class="w-full bg-[#161b22] border border-white/10 rounded-2xl py-5 px-14 text-white focus:outline-none focus:border-yellow-500 shadow-2xl transition-all">
-            <i class="fas fa-search absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-yellow-500 transition-colors"></i>
-        </div>
-    </div>
-
-    <!-- Category Tabs -->
-    <div class="max-w-4xl mx-auto px-6 mb-10 fade-in-up" style="animation-delay: 0.4s;">
-        <div class="flex space-x-6 border-b border-white/5 whitespace-nowrap justify-center overflow-x-auto pb-1">
-            <button onclick="filterCategory('all')" class="tab-btn active pb-4 px-2 orbitron text-xs font-bold tracking-widest uppercase transition-all" data-cat="all">All</button>
-            <button onclick="filterCategory('ws-app')" class="tab-btn pb-4 px-2 orbitron text-xs font-bold tracking-widest uppercase transition-all" data-cat="ws-app">App Help</button>
-            <button onclick="filterCategory('rules')" class="tab-btn pb-4 px-2 orbitron text-xs font-bold tracking-widest uppercase transition-all" data-cat="rules">Gameplay</button>
-            <button onclick="filterCategory('payments')" class="tab-btn pb-4 px-2 orbitron text-xs font-bold tracking-widest uppercase transition-all" data-cat="payments">Prizes</button>
-        </div>
-    </div>
-
-    <!-- FAQ Container -->
-    <main class="max-w-4xl mx-auto px-6 pb-24 fade-in-up" style="animation-delay: 0.5s;">
-        <div id="faqContainer" class="space-y-4">
             
-            <div class="faq-item ws-card rounded-2xl overflow-hidden" data-category="ws-app">
-                <button class="w-full text-left p-6 flex justify-between items-center hover:bg-white/5 transition-colors">
-                    <span class="text-lg font-bold tracking-wide">How to get the Room ID & Password?</span>
-                    <i class="fas fa-chevron-down text-xs chevron transition-transform"></i>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 leading-tight">
+                Pakistan's Best <br class="sm:hidden"><span class="text-blue-500">Tournament App</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl">
+                Win Real Cash Rewards by playing your favorite games!
+            </p>
+
+            <!-- Glowing Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-5 w-full sm:w-auto items-center">
+                <button onclick="triggerDownload()" 
+                   id="main-download-btn"
+                   class="glow-blue px-10 py-5 rounded-2xl text-lg font-bold flex items-center justify-center space-x-3 w-full sm:min-w-[240px]">
+                    <i class="fa-brands fa-android text-2xl"></i>
+                    <span id="download-text">DOWNLOAD NOW</span>
                 </button>
-                <div class="faq-answer">
-                    <div class="px-6 pb-6 text-gray-400 border-t border-white/5 pt-4 bg-black/20">
-                        Check the <span class="text-yellow-500 font-bold">WS Battle App</span> exactly 15 minutes before match time. We also push live updates to our WhatsApp channel if there are delays.
-                    </div>
-                </div>
-            </div>
-
-            <div class="faq-item ws-card rounded-2xl overflow-hidden" data-category="rules">
-                <button class="w-full text-left p-6 flex justify-between items-center hover:bg-white/5 transition-colors">
-                    <span class="text-lg font-bold tracking-wide">Are emulators allowed?</span>
-                    <i class="fas fa-chevron-down text-xs chevron transition-transform"></i>
-                </button>
-                <div class="faq-answer">
-                    <div class="px-6 pb-6 text-gray-400 border-t border-white/5 pt-4 bg-black/20">
-                        No. WS Battle is a mobile-only tournament platform. Any player detected using an emulator will be banned immediately from the series.
-                    </div>
-                </div>
-            </div>
-
-            <div class="faq-item ws-card rounded-2xl overflow-hidden" data-category="payments">
-                <button class="w-full text-left p-6 flex justify-between items-center hover:bg-white/5 transition-colors">
-                    <span class="text-lg font-bold tracking-wide">Minimum withdrawal amount?</span>
-                    <i class="fas fa-chevron-down text-xs chevron transition-transform"></i>
-                </button>
-                <div class="faq-answer">
-                    <div class="px-6 pb-6 text-gray-400 border-t border-white/5 pt-4 bg-black/20">
-                        The minimum withdrawal limit is <span class="text-white font-bold">₹100</span>. All payments are verified manually to ensure no cheating occurred during the tournament.
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div id="noResults" class="hidden text-center py-20 border border-dashed border-white/10 rounded-3xl mt-4">
-            <h2 class="orbitron text-xl font-bold text-gray-600 uppercase">No Intel Found</h2>
-        </div>
-    </main>
-
-    <!-- Support Footer -->
-    <section class="max-w-5xl mx-auto px-6 pb-20 fade-in-up" style="animation-delay: 0.6s;">
-        <div class="bg-gradient-to-r from-yellow-500 to-orange-600 rounded-3xl p-8 md:p-12 text-center text-black relative overflow-hidden shadow-2xl">
-            <div class="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity"></div>
-            <h2 class="orbitron text-4xl font-black mb-4 uppercase">JOIN THE COMMUNITY</h2>
-            <p class="font-bold text-lg mb-8 opacity-80">Get live support and match updates on your favorite platforms.</p>
-            
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" target="_blank" class="bg-black text-white px-10 py-4 rounded-xl font-black orbitron tracking-widest hover:scale-110 transition-transform flex items-center shadow-lg">
-                    <i class="fab fa-whatsapp mr-3 text-xl"></i> WHATSAPP
+                
+                <a href="https://youtube.com/@saimff92?si=QcbhPvd9G35IYu5K" 
+                   target="_blank"
+                   class="glow-red px-10 py-5 rounded-2xl text-lg font-bold flex items-center justify-center space-x-3 transition w-full sm:min-w-[240px]">
+                    <i class="fa-brands fa-youtube text-2xl"></i>
+                    <span>WATCH YOUTUBE</span>
                 </a>
-                <a href="https://youtube.com/@saimff92" target="_blank" class="bg-white text-black px-10 py-4 rounded-xl font-black orbitron tracking-widest hover:scale-110 transition-transform flex items-center shadow-lg">
-                    <i class="fab fa-youtube mr-3 text-xl"></i> YOUTUBE
+
+                <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" 
+                   target="_blank"
+                   class="glow-green px-10 py-5 rounded-2xl text-lg font-bold flex items-center justify-center space-x-3 transition w-full sm:min-w-[240px]">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span>WHATSAPP GROUP</span>
+                </a>
+            </div>
+            
+            <!-- Quick Tip -->
+            <div class="mt-12 p-4 bg-blue-500/5 border border-blue-500/20 rounded-2xl max-w-lg">
+                <p class="text-gray-300 text-sm italic">
+                    <i class="fas fa-info-circle text-blue-400 mr-2"></i>
+                    MediaFire page open hoga, wahan <b>Blue Download Button</b> par click karein.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Guide for Help -->
+    <section id="how-to-install" class="py-16 bg-slate-900/50 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-10">Zaroori Maloomat (How to Install)</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card p-6 rounded-3xl text-center border-blue-500/20 shadow-[0_0_20px_rgba(37,99,235,0.1)]">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">1</div>
+                    <h4 class="font-bold mb-2">Step 1</h4>
+                    <p class="text-sm text-gray-400">MediaFire page par <b>Download</b> button dabaen aur warning par <b>Download Anyway</b> karein.</p>
+                </div>
+                <div class="card p-6 rounded-3xl text-center">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">2</div>
+                    <h4 class="font-bold mb-2">Step 2</h4>
+                    <p class="text-sm text-gray-400">Settings mein ja kar <b>Allow Unknown Sources</b> ko ON karein.</p>
+                </div>
+                <div class="card p-6 rounded-3xl text-center">
+                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">3</div>
+                    <h4 class="font-bold mb-2">Step 3</h4>
+                    <p class="text-sm text-gray-400">Install par click karein aur gaming shuru karein!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Support Section -->
+    <section id="contact" class="py-16 bg-slate-900 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">Contact & Support</h2>
+            <p class="text-gray-400 text-center mb-12">Koi masla ho to humse rabta karein</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Phone Card -->
+                <a href="tel:03284930801" class="card p-8 rounded-3xl flex flex-col items-center group transition-all">
+                    <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-phone-alt text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">Call / WhatsApp</h4>
+                    <p class="text-blue-400 font-semibold text-xl tracking-wider">03284930801</p>
+                </a>
+                <!-- Email Card -->
+                <a href="mailto:webattle92@gmail.com" class="card p-8 rounded-3xl flex flex-col items-center group transition-all">
+                    <div class="w-16 h-16 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </div>
+                    <h4 class="text-lg font-bold mb-1">Email Support</h4>
+                    <p class="text-blue-400 font-semibold text-xl tracking-tight">webattle92@gmail.com</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="text-center py-10 text-gray-600 text-xs orbitron tracking-widest">
-        &copy; 2024 WS BATTLE | POWERED BY SAIMFF
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-white/5 text-center bg-slate-950">
+        <div class="flex justify-center space-x-8 mb-8">
+            <a href="https://youtube.com/@saimff92?si=QcbhPvd9G35IYu5K" target="_blank" class="text-3xl text-gray-500 hover:text-red-500 transition-all transform hover:scale-125"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" target="_blank" class="text-3xl text-gray-500 hover:text-green-500 transition-all transform hover:scale-125"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="tel:03284930801" class="text-3xl text-gray-500 hover:text-blue-500 transition-all transform hover:scale-125"><i class="fas fa-phone-square"></i></a>
+        </div>
+        <div class="text-gray-500 text-sm space-y-2 mb-6">
+            <p><i class="fas fa-at mr-2"></i> webattle92@gmail.com</p>
+            <p><i class="fas fa-mobile-alt mr-2"></i> 0328493801</p>
+        </div>
+        <p class="text-gray-700 text-xs">© 2026 WS BATTLE. Designed for Pro Gamers in Pakistan.</p>
     </footer>
 
+    <!-- Helpful Popup -->
+    <div id="install-modal">
+        <div class="bg-slate-800 p-8 rounded-3xl max-w-sm w-full border border-blue-500/40 shadow-[0_0_50px_rgba(37,99,235,0.3)]">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-blue-500/20 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-external-link-alt text-2xl animate-pulse"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2">MediaFire Link</h3>
+                <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                    Aapko download page par bheja ja raha hai. Wahan <b>Download</b> button par click karein.
+                </p>
+                <button onclick="closeModal()" class="w-full py-4 bg-blue-600 hover:bg-blue-500 rounded-xl font-bold transition shadow-lg shadow-blue-900/20">OKAY, GO!</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // FAQ Accordion
-        document.querySelectorAll('.faq-item button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const parent = btn.parentElement;
-                const wasActive = parent.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
-                if (!wasActive) parent.classList.add('active');
-            });
-        });
+        const mediafireLink = 'https://www.mediafire.com/file/u3rywiu19ez3lr6/ws_battle.apk/file';
 
-        // Search
-        const searchInput = document.getElementById('searchInput');
-        const faqItems = document.querySelectorAll('.faq-item');
-        const noResults = document.getElementById('noResults');
+        function triggerDownload() {
+            const btn = document.getElementById('main-download-btn');
+            const text = document.getElementById('download-text');
+            const modal = document.getElementById('install-modal');
+            
+            text.innerText = "OPENING...";
+            btn.classList.add('downloading-pulse');
 
-        searchInput.addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            let count = 0;
-            faqItems.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                if(text.includes(val)) {
-                    item.style.display = 'block';
-                    count++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            noResults.classList.toggle('hidden', count > 0);
-        });
+            // Show the guidance modal
+            modal.style.display = 'flex';
 
-        // Category Filter
-        function filterCategory(cat) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.dataset.cat === cat) btn.classList.add('active');
-            });
+            // Open MediaFire in a new tab
+            window.open(mediafireLink, '_blank');
 
-            let count = 0;
-            faqItems.forEach(item => {
-                if(cat === 'all' || item.dataset.category === cat) {
-                    item.style.display = 'block';
-                    count++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            noResults.classList.toggle('hidden', count > 0);
+            // Reset button text after 5 seconds
+            setTimeout(() => {
+                text.innerText = "DOWNLOAD NOW";
+                btn.classList.remove('downloading-pulse');
+            }, 5000);
+        }
+
+        function closeModal() {
+            document.getElementById('install-modal').style.display = 'none';
         }
     </script>
 </body>
