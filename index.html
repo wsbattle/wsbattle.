@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, Free fire player!</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <h1 class="title">Hello World!</h1>
+      <p id="currentTime"></p>
+      <script src="script.js"></script>
+  </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WS Battle - Free Fire Tournament FAQ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
+
+        :root {
+            --ws-primary: #ffcc00;
+            --ws-secondary: #ff3c00;
+            --ws-dark: #05070a;
+            --ws-card: #0f141d;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--ws-dark);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 204, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+
+        .shimmer-btn {
+            background: linear-gradient(90deg, #ffcc00 0%, #fff 50%, #ffcc00 100%);
+            background-size: 200% auto;
+            color: black;
+            animation: shimmer 3s infinite linear;
+            transition: transform 0.2s ease;
+        }
+
+        .shimmer-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards ease-out;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- UI STYLES --- */
+        .ws-gradient-text {
+            background: linear-gradient(135deg, #ffcc00, #ff7b00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ws-card {
+            background: var(--ws-card);
+            border: 1px solid rgba(255, 204, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ws-card:hover {
+            border-color: var(--ws-primary);
+            box-shadow: 0 10px 30px -10px rgba(255, 204, 0, 0.2);
+            transform: scale(1.01);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-item.active .chevron {
+            transform: rotate(180deg);
+            color: var(--ws-primary);
+        }
+
+        .tab-btn {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--ws-primary);
+            box-shadow: 0 0 10px var(--ws-primary);
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% -20%, rgba(255, 204, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="bg-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="p-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex items-center space-x-2">
+            <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-600 rounded-lg flex items-center justify-center rotate-45">
+                <i class="fas fa-fire-alt text-black -rotate-45 text-xl"></i>
+            </div>
+            <span class="orbitron text-2xl font-black tracking-tighter">WS <span class="text-yellow-500 text-glow">BATTLE</span></span>
+        </div>
+        
+        <div class="flex items-center space-x-6">
+            <div class="hidden md:flex space-x-4">
+                <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" target="_blank" class="text-gray-400 hover:text-green-500 transition-colors"><i class="fab fa-whatsapp text-xl"></i></a>
+                <a href="https://youtube.com/@saimff92" target="_blank" class="text-gray-400 hover:text-red-500 transition-colors"><i class="fab fa-youtube text-xl"></i></a>
+            </div>
+            <!-- Animated Action Button -->
+            <button class="shimmer-btn orbitron text-[10px] font-black px-6 py-2 rounded-full tracking-[0.2em] animate-pulse-glow">
+                PLAY NOW
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="py-16 px-6 text-center fade-in-up" style="animation-delay: 0.1s;">
+        <h1 class="orbitron text-5xl md:text-7xl font-black mb-4 ws-gradient-text uppercase tracking-tighter">Support Hub</h1>
+        <p class="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl">
+            Join the elite squad on <span class="text-white font-bold">WS Battle</span>. Find answers or connect with our community channels below.
+        </p>
+    </header>
+
+    <!-- Social Links Grid -->
+    <div class="max-w-4xl mx-auto px-6 mb-16 grid grid-cols-1 md:grid-cols-2 gap-4 fade-in-up" style="animation-delay: 0.2s;">
+        <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" target="_blank" class="ws-card p-6 rounded-2xl flex items-center space-x-4 group">
+            <div class="bg-green-500/20 p-4 rounded-xl text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
+                <i class="fab fa-whatsapp text-2xl"></i>
+            </div>
+            <div>
+                <h3 class="orbitron text-sm font-bold text-white tracking-widest">WHATSAPP CHANNEL</h3>
+                <p class="text-xs text-gray-500">Get Room IDs & Instant Alerts</p>
+            </div>
+        </a>
+        <a href="https://youtube.com/@saimff92" target="_blank" class="ws-card p-6 rounded-2xl flex items-center space-x-4 group">
+            <div class="bg-red-500/20 p-4 rounded-xl text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all duration-300">
+                <i class="fab fa-youtube text-2xl"></i>
+            </div>
+            <div>
+                <h3 class="orbitron text-sm font-bold text-white tracking-widest">YOUTUBE UPDATES</h3>
+                <p class="text-xs text-gray-500">Tournament Highlights & Live</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- Search Section -->
+    <div class="max-w-3xl mx-auto px-6 mb-12 fade-in-up" style="animation-delay: 0.3s;">
+        <div class="relative group">
+            <input type="text" id="searchInput" placeholder="Search for help..." 
+                   class="w-full bg-[#161b22] border border-white/10 rounded-2xl py-5 px-14 text-white focus:outline-none focus:border-yellow-500 shadow-2xl transition-all">
+            <i class="fas fa-search absolute left-6 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-yellow-500 transition-colors"></i>
+        </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="max-w-4xl mx-auto px-6 mb-10 fade-in-up" style="animation-delay: 0.4s;">
+        <div class="flex space-x-6 border-b border-white/5 whitespace-nowrap justify-center overflow-x-auto pb-1">
+            <button onclick="filterCategory('all')" class="tab-btn active pb-4 px-2 orbitron text-xs font-bold tracking-widest uppercase transition-all" data-cat="all">All</button>
+            <button onclick="filterCategory('ws-app')" class="tab-btn pb-4 px-2 orbitron text-xs font-bold tracking-widest uppercase transition-all" data-cat="ws-app">App Help</button>
+            <button onclick="filterCategory('rules')" class="tab-btn pb-4 px-2 orbitron text-xs font-bold tracking-widest uppercase transition-all" data-cat="rules">Gameplay</button>
+            <button onclick="filterCategory('payments')" class="tab-btn pb-4 px-2 orbitron text-xs font-bold tracking-widest uppercase transition-all" data-cat="payments">Prizes</button>
+        </div>
+    </div>
+
+    <!-- FAQ Container -->
+    <main class="max-w-4xl mx-auto px-6 pb-24 fade-in-up" style="animation-delay: 0.5s;">
+        <div id="faqContainer" class="space-y-4">
+            
+            <div class="faq-item ws-card rounded-2xl overflow-hidden" data-category="ws-app">
+                <button class="w-full text-left p-6 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <span class="text-lg font-bold tracking-wide">How to get the Room ID & Password?</span>
+                    <i class="fas fa-chevron-down text-xs chevron transition-transform"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="px-6 pb-6 text-gray-400 border-t border-white/5 pt-4 bg-black/20">
+                        Check the <span class="text-yellow-500 font-bold">WS Battle App</span> exactly 15 minutes before match time. We also push live updates to our WhatsApp channel if there are delays.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item ws-card rounded-2xl overflow-hidden" data-category="rules">
+                <button class="w-full text-left p-6 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <span class="text-lg font-bold tracking-wide">Are emulators allowed?</span>
+                    <i class="fas fa-chevron-down text-xs chevron transition-transform"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="px-6 pb-6 text-gray-400 border-t border-white/5 pt-4 bg-black/20">
+                        No. WS Battle is a mobile-only tournament platform. Any player detected using an emulator will be banned immediately from the series.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item ws-card rounded-2xl overflow-hidden" data-category="payments">
+                <button class="w-full text-left p-6 flex justify-between items-center hover:bg-white/5 transition-colors">
+                    <span class="text-lg font-bold tracking-wide">Minimum withdrawal amount?</span>
+                    <i class="fas fa-chevron-down text-xs chevron transition-transform"></i>
+                </button>
+                <div class="faq-answer">
+                    <div class="px-6 pb-6 text-gray-400 border-t border-white/5 pt-4 bg-black/20">
+                        The minimum withdrawal limit is <span class="text-white font-bold">₹100</span>. All payments are verified manually to ensure no cheating occurred during the tournament.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="noResults" class="hidden text-center py-20 border border-dashed border-white/10 rounded-3xl mt-4">
+            <h2 class="orbitron text-xl font-bold text-gray-600 uppercase">No Intel Found</h2>
+        </div>
+    </main>
+
+    <!-- Support Footer -->
+    <section class="max-w-5xl mx-auto px-6 pb-20 fade-in-up" style="animation-delay: 0.6s;">
+        <div class="bg-gradient-to-r from-yellow-500 to-orange-600 rounded-3xl p-8 md:p-12 text-center text-black relative overflow-hidden shadow-2xl">
+            <div class="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity"></div>
+            <h2 class="orbitron text-4xl font-black mb-4 uppercase">JOIN THE COMMUNITY</h2>
+            <p class="font-bold text-lg mb-8 opacity-80">Get live support and match updates on your favorite platforms.</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://whatsapp.com/channel/0029VbBmn1089infTDD8oq3s" target="_blank" class="bg-black text-white px-10 py-4 rounded-xl font-black orbitron tracking-widest hover:scale-110 transition-transform flex items-center shadow-lg">
+                    <i class="fab fa-whatsapp mr-3 text-xl"></i> WHATSAPP
+                </a>
+                <a href="https://youtube.com/@saimff92" target="_blank" class="bg-white text-black px-10 py-4 rounded-xl font-black orbitron tracking-widest hover:scale-110 transition-transform flex items-center shadow-lg">
+                    <i class="fab fa-youtube mr-3 text-xl"></i> YOUTUBE
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 text-gray-600 text-xs orbitron tracking-widest">
+        &copy; 2024 WS BATTLE | POWERED BY SAIMFF
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-item button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const parent = btn.parentElement;
+                const wasActive = parent.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+                if (!wasActive) parent.classList.add('active');
+            });
+        });
+
+        // Search
+        const searchInput = document.getElementById('searchInput');
+        const faqItems = document.querySelectorAll('.faq-item');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            let count = 0;
+            faqItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if(text.includes(val)) {
+                    item.style.display = 'block';
+                    count++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            noResults.classList.toggle('hidden', count > 0);
+        });
+
+        // Category Filter
+        function filterCategory(cat) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.dataset.cat === cat) btn.classList.add('active');
+            });
+
+            let count = 0;
+            faqItems.forEach(item => {
+                if(cat === 'all' || item.dataset.category === cat) {
+                    item.style.display = 'block';
+                    count++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            noResults.classList.toggle('hidden', count > 0);
+        }
+    </script>
+</body>
+</html>
